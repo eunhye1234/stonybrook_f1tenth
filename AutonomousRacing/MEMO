@@ -1,0 +1,41 @@
+[ERROR_MEMO]
+
+[Error] 
+- ConnectionRefusedError > connection failed with rosmaster
+
+- RLException: Unable to contact my own server at [http://10.1.196.215:34965/].
+This usually means that the network is not configured properly.
+
+A common cause is that the machine cannot connect to itself.
+
+
+(issue: roscore doesn't work) 
+
+
+--------------------------------------------------------------------------------
+
+[Solution]
+1. (host)$ifconfig, ip addr 
+> compare if the wlan0(wireless LAN)'s ip address(inet) is same as ROS_HOSTNAME in .bashrc
+
+2. 
+(host)$echo "export ROS_MASTER_URI=http://10.1.196.215:11311" >> ~/.bashrc
+(host)$echo "export ROS_HOSTNAME=10.1.196.215" >> ~/.bashrc
+(host)$source ~/.bashrc
+
+
+(solution: change the ip address in .bashrc) 
+
+--------------------------------------------------------------------------------
+
+(host)$ping ip_addr
+PING 10.1.193.197 (10.1.193.197) 56(84) bytes of data.
+64 bytes from 10.1.193.197: icmp_seq=1 ttl=64 time=0.129 ms
+64 bytes from 10.1.193.197: icmp_seq=2 ttl=64 time=0.144 ms
+> solved
+
+(host)$ping ip_addr
+PING 10.1.193.197 (10.1.193.197) 56(84) bytes of data.
+> not solved
+
+

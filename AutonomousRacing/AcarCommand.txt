@@ -1,0 +1,26 @@
+- Steps to launch manual control:
+
+	1: start ROS by typing "$ roscore" into a terminal
+	2: open another terminal and type "$ cd f1tenth_ws"
+	3: compile the project by typing "$ catkin_make"
+	4: add project to path by typing "$ source devel/setup.bash"
+	5: launch manual control with "$ roslaunch racecar teleop.launch"
+
+- List all ROS topics: "$ rostopic list"
+
+- Get measurements:
+
+ 	1. record a ROS topic: "$ rosbag record scan vesc/odom
+	2. convert bag to .csv file: "$ rostopic echo -b filename.bag -p topicname > filename.csv 
+	3. in our case: rosbag record -O measurement.bag /vesc/odom /vesc/sensors/core /scan /vesc/low_level/ackermann_cmd_mux/input/teleop /vesc/sensors/servo_position_command 
+
+- Tmux:
+	
+	1. split terminal horizontally: Cstr + b  + %
+	2. split terminal vertically: Cstr + b + "
+
+- IP address: if the IP address changed, one has to change it in ./bashrc for ROS to work again
+
+- Copying recorded measurements from the F1tentth car to my personal computer via the command line:
+
+  "scp -r ccri-batch2-car3@130.245.70.43:/home/ccri-batch2-car3/Measurements/racetrack_9 /home/niklas/Documents/Repositories/AutonomousRacing/measurements/racetrack_9"

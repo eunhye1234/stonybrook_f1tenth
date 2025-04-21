@@ -1,0 +1,65 @@
+https://moreless.medium.com/install-python3-9-on-ubuntu-18-04-20-04-479abeea028b
+
+https://phoenixnap.com/kb/fix-could-not-get-lock-error-ubuntu
+
+
+1000  cd f1tenth_
+ 1001  cd f1tenth_ws
+ 1002  catkin_make
+ 1003  source devel/setup.bash
+ 1004  roslaunch racecar teleop.launch
+
+ 1025  roscore
+ 1026  cd AutonomousRacing/
+ 1027  git reset --hard
+ 1028  git pull origin
+ 1029  cd Measurements/
+ 1030  ./createMeasurements.sh
+ 1031  mv measurement racetrack_10
+
+1048  cd AutonomousRacing/
+ 1049  git pull orign
+ 1050  git pull origin
+ 1051  git reset hard
+ 1052  git reset --hard
+ 1053  git pull origin
+ 1054  roscore
+ 1055  cd AutonomousRacing/
+ 1056  git reset --hard
+ 1057  cd AutonomousRacing/
+ 1058  python3.7 main_gym.py
+ 1059  tmux
+ 1060  rostopic list
+ 1061  roscore
+ 1062  rosbag record -O measurement.bag /vesc/odom /vesc/sensors/core /scan /vesc/low_level/ackermann_cmd_mux/input/teleop /vesc/sensors/servo_position_command /vesc/observer
+ 1063  cd Measurements/
+ 1064  rosbag record -O measurement.bag /vesc/odom /vesc/sensors/core /scan /vesc/low_level/ackermann_cmd_mux/input/teleop /vesc/sensors/servo_position_command /vesc/observer
+ 1065  ./createMeasurements.sh
+
+1079  roscore
+ 1080  cd AutonomousRacing/
+ 1081  vim main_car.py
+ 1082  cd Measurements/
+ 1083  rosbag record -O measurement.bag /vesc/odom /vesc/sensors/core /scan /vesc/low_level/ackermann_cmd_mux/input/teleop /vesc/sensors/servo_position_command /vesc/observer
+ 1084  ./createMeasurements.sh
+ 1085  mv measurement racetrack_14
+ 1086  ./createMeasurements.sh
+ 1087  roslaunch racecar teleop.launch
+ 1088  mv measurement racetrack_15
+ 1089  cd AutonomousRacing/
+ 1090  git reset --hard
+ 1091  git pull origin
+ 1092  tmux
+ 1093  cd AutonomousRacing/
+ 1094  git reset --hard
+ 1095  git pull origin
+ 1096  cd AutonomousRacing/
+ 1097  git reset --hard
+ 1098  git pull origin
+ 1099  ifconfig
+ 1100  source devel/setup.bash
+ 1101  ifconfig
+ 1102  roscore
+ 1103  tmux
+
+
