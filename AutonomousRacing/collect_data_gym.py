@@ -106,22 +106,13 @@ class KeyboardControlF1TenthEnv:
         action = np.asarray([action])
 
         # Call the original step function with the updated action
-        # obs, reward, done, info = super(KeyboardControlF1TenthEnv, self).step(action)
         obs, reward, done, info = self.env.step(action)
         self.env.render()
-        # self.steering_angle == 0.0
-        # print(f"Observation (obs): {obs}")
-        # print(f"Reward: {reward}")
-        # print(f"Done: {done}")
-        # print(f"Info: {info}")
-        # print("self.env.step(action) end")
 
         # Publish LiDAR data (for example, simulate a random LiDAR scan)
         lidar_msg = LaserScan()
         lidar_msg.header.stamp = rospy.Time.now()
         obs['scans'] = obs['scans'][0]
-        # print(f"obs['scans'] type: {type(obs['scans'])}")
-        # print(f"obs['scans']: {obs['scans']}")
 
         lidar_msg.ranges = list(map(float, obs['scans']))  # Use the LiDAR scan from the observation
         self.lidar_pub.publish(lidar_msg)
@@ -137,8 +128,6 @@ class KeyboardControlF1TenthEnv:
         self.data_log.append({
             'timestamp': rospy.Time.now().to_sec(),
             'lidar': lidar_msg.ranges,
-            # 'speed': self.speed,
-            # 'steering_angle': self.steering_angle
             'speed': cmd_msg.drive.speed,
             'steering_angle': cmd_msg.drive.steering_angle
         })
