@@ -32,7 +32,6 @@ RACETRACK = 'StonyBrook'
 # RACETRACK = 'ICRA'
 OBSERVER = 'ParticleFilter'
 x0 = np.array([-0.0, -0.4, -1.57])
-# x0 = np.array([-0.0, -0.4, 1.57])
 
 print("run")
 def car_parameter():
@@ -131,7 +130,7 @@ class PublisherSubscriber:
         # obtain new control commands from the controller
         if self.run and np.mean(self.lidar_data[500:580]) > 0.2: 
             # u = self.controller.plan(self.x, self.y, self.theta, self.velocity, self.lidar_data)
-            u = self.controller.plan(self.lidar_data)
+            u = self.controller.plan(self.lidar_data)         ###tinylidarnet
         else:
             u = np.array([0.0, 0.0])
            
@@ -276,7 +275,7 @@ def start_controller():
     # settings = parse_settings(CONTROLLER, RACETRACK, False)
     # exec('controller = ' + CONTROLLER + '(params, settings)')
     test_id = "benchmark_tiny_il_m"
-    controller = TinyLidarNet(test_id,2, 0,'/home/ccri-batch2-car3/TinyLidarNet/Models/TLN_trackdata_noquantized.tflite')
+    controller = TinyLidarNet(test_id,2, 0,'/home/ccri-batch2-car3/TinyLidarNet/Models/TLN_trackdata_noquantized.tflite')    ###tinylidarnet
 
     # start control cycle
     PublisherSubscriber(locals()['controller'])
