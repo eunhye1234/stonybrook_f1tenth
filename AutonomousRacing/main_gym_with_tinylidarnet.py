@@ -68,20 +68,10 @@ if __name__ == '__main__':
     params = env.params
     params['lidar'] = 0.0
 
-    # for i in range(len(CONTROLLER)):
-        # settings = parse_settings(CONTROLLER[i], RACETRACK, VISUALIZE)
-        # exec('tmp = ' + CONTROLLER[i] + '(params, settings)')
-        # controller.append(tmp)
-        # print(type(tmp))  # <class 'algorithms.GapFollower.GapFollower'>
-
-
-    test_id = "benchmark_tiny_il_m"
-    # print(test_id)
+    test_id = "benchmark_tiny_il_m"    
     
-    # tmp = TinyLidarNet(test_id,1, 0,'/home/ccri-batch2-car3/TinyLidarNet/Benchmark/f1tenth_benchmarks/zarrar/f1_tenth_model_diff_main_noquantized.tflite') #'shape': array([  1, 1081,   1], dtype=int32)
     # controller = TinyLidarNet(test_id,2, 0,'/home/ccri-batch2-car3/TinyLidarNet/Benchmark/f1tenth_benchmarks/zarrar/f1_tenth_model_small_noquantized.tflite')
     controller = tiny_lidarnet.TinyLidarNet(test_id,2, 0,'/home/ccri-batch2-car3/TinyLidarNet/Benchmark/f1tenth_benchmarks/zarrar/f1_tenth_model_small_noquantized.tflite')
-    # print(type(tmp))
     
     # initialize auxiliary variables
     laptime = 0.0
@@ -93,16 +83,9 @@ if __name__ == '__main__':
         # re-plan trajectory
         actions = []
 
-        # for i in range(len(controller)):
-            # speed, steer = controller[i].plan(obs['poses_x'][i], obs['poses_y'][i], obs['poses_theta'][i],
-                                            #    obs['linear_vels_x'][i], obs['scans'][i])
-            # speed, steer = controller.plan(obs['scans'][i])
-            # actions.append([steer, speed])
         obs['scans'] = np.array(obs['scans'])     
         speed, steer = controller.plan(obs['scans'])
-        print(f"speed, steer: {speed, steer}")
-        # speed = 0.5
-        # actions.append([steer, speed])
+
         actions.append([speed, steer])
 
         # update the simulation environment
