@@ -82,7 +82,6 @@ class PublisherSubscriber:
         self.sub_velocity = rospy.Subscriber("/vesc/odom/", Odometry, self.callback_velocity)
         self.sub_observer = rospy.Subscriber("observer", Float32MultiArray, self.callback_observer)
         self.sub_keyboard = rospy.Subscriber("keyboard", Bool, self.callback_keyboard)
-        rospy.loginfo(f"************************************")
 
         # store motion planner and observer
         self.controller = controller
@@ -132,8 +131,6 @@ class PublisherSubscriber:
         # obtain new control commands from the controller
         if self.run and np.mean(self.lidar_data[500:580]) > 0.2: 
             # u = self.controller.plan(self.x, self.y, self.theta, self.velocity, self.lidar_data)
-            # rospy.loginfo(f"*************callback_timer")
-            # rospy.loginfo(f"self.lidar_data type : {type(self.lidar_data)}")
             u = self.controller.plan(self.lidar_data)
         else:
             u = np.array([0.0, 0.0])
@@ -279,9 +276,7 @@ def start_controller():
     # settings = parse_settings(CONTROLLER, RACETRACK, False)
     # exec('controller = ' + CONTROLLER + '(params, settings)')
     test_id = "benchmark_tiny_il_m"
-    # rospy.loginfo(f"calling controller")
     controller = TinyLidarNet(test_id,2, 0,'/home/ccri-batch2-car3/TinyLidarNet/Models/TLN_trackdata_noquantized.tflite')
-    # controller = TinyLidarNet(test_id,2, 0,'/home/ccri-batch2-car3/TinyLidarNet/Benchmark/f1tenth_benchmarks/zarrar/f1_tenth_model_small_noquantized.tflite')
 
     # start control cycle
     PublisherSubscriber(locals()['controller'])
