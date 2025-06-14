@@ -134,10 +134,8 @@ for pth in dataset_path:
     # print(df['lidar'])
 
     # for lidar_msg in df['lidar']:
-        # LiDAR 데이터를 ','로 나누고 리스트로 변환
         # print(type(lidar_msg))
         # print(lidar_msg)
-        # LiDAR 범위 데이터가 시작하는 열(column) 찾기
     # columns = [col for col in df.columns]
     # print(columns)
 
@@ -146,7 +144,6 @@ for pth in dataset_path:
         range_columns = [col for col in df.columns if col.startswith("field.ranges")]
 
         for _, row in df.iterrows():
-            # LiDAR 데이터를 저장할 리스트
             lidar_msg = row[range_columns].values.tolist()
 
         # lidar_msg = lidar_msg.replace('[', '').replace(']', '').split(',')
